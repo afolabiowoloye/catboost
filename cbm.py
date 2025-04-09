@@ -1,13 +1,24 @@
 import streamlit as st
 from catboost import CatBoostRegressor
 import pandas as pd
+import requests
+import io
 
-# Load the trained model
-model = CatBoostRegressor()
-model.load_model('catboost_regression_model.cbm')
-
-# Streamlit UI
+# Title
 st.title("CatBoost Regression Predictor")
+
+# Load the model from GitHub (raw URL)
+MODEL_URL = "https://github.com/your_username/your_repo/raw/main/catboost_regression_model.cbm"
+
+@st.cache_resource  # Cache the model to avoid reloading on every interaction
+def load_model():
+    response = requests.get(MODEL_URL)
+    response.raise_for_status()  # Check for download errors
+    model = CatBoostRegressor()
+    model.load_model(io.BytesIO(response.content))
+    return model
+
+model = load_model()
 
 # Input fields (modify based on your features)
 feature1 = st.number_input("Feature 1", value=0.5)
