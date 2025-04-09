@@ -1,0 +1,9 @@
+catboost==1.2.5
+pandas
+numpy
+streamlit
+streamlit-option-menu
+pandas
+seaborn
+plotly
+scikit-learn
