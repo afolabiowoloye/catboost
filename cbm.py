@@ -10,7 +10,9 @@ st.title("CatBoost Regression Predictor")
 # Load the model from GitHub (raw URL)
 MODEL_URL = "https://github.com/afolabiowoloye/catboost/raw/refs/heads/main/model/catboost_regression_model.cbm"
 
-@st.cache_resource  # Cache the model to avoid reloading on every interaction
+
+#@st.cache_resource  # Cache the model to avoid reloading on every interaction
+@st.cache_resource(ttl=3600)  # Refresh cache hourly
 def load_model():
     response = requests.get(MODEL_URL)
     response.raise_for_status()  # Check for download errors
