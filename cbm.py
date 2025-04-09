@@ -8,7 +8,7 @@ import io
 st.title("CatBoost Regression Predictor")
 
 # Load the model from GitHub (raw URL)
-MODEL_URL = "https://github.com/your_username/your_repo/raw/main/catboost_regression_model.cbm"
+MODEL_URL = "https://github.com/afolabiowoloye/catboost/raw/refs/heads/main/model/catboost_regression_model.cbm"
 
 @st.cache_resource  # Cache the model to avoid reloading on every interaction
 def load_model():
